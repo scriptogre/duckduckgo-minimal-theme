@@ -1,0 +1,163 @@
+/* ===================================================
+   Minimalist Theme Overrides
+   ----------------------------------------------------
+   Applies only when the minimalist theme is not disabled.
+=================================================== */
+html:not(:has(input[value="disable-minimal-theme"])) {
+    @media (min-width: 48rem) {
+
+        /* ===================================================
+           HEADER & SEARCH BAR
+        =================================================== */
+        [data-testid="header"] {
+            /* Add space on top of the header */
+            padding-top: 2rem !important;
+        }
+
+        #header,
+        [data-testid="web-vertical"] {
+            /* Add space on left side of header and search results */
+            padding-left: 60px !important;
+        }
+
+        .header__content.header__search {
+            /* Align search bar with the rest by adjusting left offset */
+            left: 16px;
+        }
+
+
+        /* ===================================================
+           SEARCH RESULTS
+        =================================================== */
+        [data-testid="result"] {
+            /* Add space between results */
+            padding: calc(var(--px-in-rem) * 15) 10px !important;
+        }
+
+        [data-testid="result"] div:last-child li[id*="sl"] {
+            /* Add space above each sublink (in the top result) */
+            margin-top: calc(var(--px-in-rem) * 15);
+        }
+
+        [data-testid="result"] > div:nth-child(2) > div:first-child {
+            /* Adjust spacing in the top-left part of each result */
+            & > span:first-child {
+                /* Space between logo and title */
+                margin-right: var(--sds-space-x03) !important;
+            }
+
+            & > div > a:nth-child(2) {
+                /* Slight top margin for proper alignment */
+                margin-top: 3px;
+            }
+        }
+        [data-testid="result"] [data-result="snippet"] {
+            /* Dim snippet text to be less prominent */
+            @media (prefers-color-scheme: light) {
+                color: #666 !important;
+            }
+            @media (prefers-color-scheme: dark) {
+                color: #d4d4d4 !important;
+            }
+        }
+        [data-testid="web-vertical"] [data-testid="mainline"] {
+            /* Add top margin to the mainline content */
+            margin-top: 1.5rem;
+        }
+        [data-testid="web-vertical"] #more-results {
+            /* Make the "More results" button background less prominent */
+            background-color: rgba(0, 0, 0, 0.01);
+            &:hover { background-color: rgba(0, 0, 0, 0.02);}
+        }
+
+
+
+        /* ===================================================
+           DUCKBAR STYLES
+        =================================================== */
+        [data-testid="duckbar"] {
+            /* Add vertical space above the duckbar */
+            margin-top: 1.5rem;
+        }
+
+        [data-testid="duckbar"] nav ul {
+            /* Add horizontal gap between navigation items */
+            gap: 0.5rem;
+        }
+
+        [data-testid="duckbar"] nav ul:last-child li:not(:has(.dropdown--settings)) {
+            /* Hide AI options from the duckbar */
+            display: none;
+        }
+
+
+        /* ===================================================
+           SIDEBAR & ABOUT SECTION (ON THE RIGHT OF SEARCH RESULTS)
+        =================================================== */
+        [data-testid="sidebar"] {
+            /* Add space above the sidebar */
+            margin-top: 2.25rem;
+        }
+
+        [data-testid="about"] > section {
+            /*
+            Add more padding in "about" sections
+            (e.g. when searching for "Apple" and it appears as a card on the right)
+            */
+            padding: 1.5rem;
+        }
+
+
+        /* ===================================================
+           IMAGES TABS
+        =================================================== */
+
+        .tile--img__sub .tile--img__title {
+            /* Make image title text less prominent */
+            font-weight: normal !important;
+        }
+        .tile--img__sub .tile--img__domain {
+            /* Make image domain text less prominent */
+            font-size: 0.875rem !important;
+            @media (prefers-color-scheme: light) {
+                color: #666 !important;
+            }
+            @media (prefers-color-scheme: dark) {
+                color: #d4d4d4 !important;
+            }
+        }
+
+        /* ===================================================
+           HIDING ELEMENTS
+        =================================================== */
+        [data-testid="web-vertical"] > div:first-child {
+            /* Hide tooling bar
+               TODO: Find a better way to hide the tooling bar while still making settings accessible */
+            display: none !important;
+        }
+        [data-testid="web-vertical"] li:has(button[aria-label="Assist"]) {
+            /* Hide occasional AI-assisted answer popup */
+            display: none !important;
+        }
+        [data-testid="web-vertical"] li:has(input[name="aiChatPrompt"]) {
+            /* Hide occasional auto-generated AI answer popup */
+            display: none !important;
+        }
+        [data-testid="web-vertical"] [data-layout="related_searches"] {
+            /* Hide related searches */
+            display: none !important;
+        }
+        [data-layout="related_searches"] div:has([data-testid="feedback-prompt"]) {
+            /* Hide the feedback prompt */
+            display: none !important;
+        }
+        .footer {
+            /* Hide footer */
+            display: none !important;
+        }
+        .tile--img__dimensions {
+            /* Hide image dimensions (while browsing images) */
+            display: none !important;
+        }
+    } /* End @media (min-width: 48rem) */
+} /* End html:not(:has(...)) */
